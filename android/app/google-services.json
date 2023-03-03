@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1064218119223",
+    "project_id": "quicksell-d5d56",
+    "storage_bucket": "quicksell-d5d56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064218119223:android:f18d980996964065e1c3b2",
+        "android_client_info": {
+          "package_name": "com.example.quick_sell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064218119223-rcrmpe79g03hu93mbd49ee05vlcaic7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyXDVTurTDPWOmwcELbfVvBmMhQ0c7azg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064218119223-rcrmpe79g03hu93mbd49ee05vlcaic7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
