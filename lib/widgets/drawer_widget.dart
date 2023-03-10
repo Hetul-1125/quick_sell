@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:quick_sell/model/userModel.dart';
-import 'package:quick_sell/provider/useProvider.dart';
+
+
 import 'package:quick_sell/screen/login_screen.dart';
 class customdrawer extends StatefulWidget {
 
