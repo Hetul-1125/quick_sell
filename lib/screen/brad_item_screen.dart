@@ -85,7 +85,7 @@ class _brandItemState extends State<brandItem> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>itemdescription(itemdes: snap[index]['itemdescription'], itemprice: snap[index]['itemprice'], itemname: snap[index]['itemTitle'], itemurl: snap[index]['itemurl'],itemId: snap[index]['itemId'],iteminfo: snap[index]['itemInfo'],)));
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>itemdescription(itemdes: snap[index]['itemdescription'], itemprice: snap[index]['itemprice'], itemname: snap[index]['itemTitle'], itemurl: snap[index]['itemurl'],itemId: snap[index]['itemId'],iteminfo: snap[index]['itemInfo'],sellerId: widget.sellerId,brandId: snap[index]['brandId'],)));
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

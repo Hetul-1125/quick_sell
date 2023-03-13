@@ -11,11 +11,16 @@ class count extends StatefulWidget {
   final String iteminfo;
   final String itemprice;
   final String itemId;
+  final String brandId;
+  final String sellerId;
   const count({Key? key,required this.iteminfo,
     required this.itemprice,
     required this.itemname,
     required this.itemurl,
-    required this.itemId}) : super(key: key);
+    required this.itemId,
+    required this.sellerId,
+    required this.brandId,
+  }) : super(key: key);
 
   @override
   State<count> createState() => _countState();
@@ -78,6 +83,8 @@ class _countState extends State<count> {
                     productinfo:widget.iteminfo,
                     productprice: int.parse(widget.itemprice),
                     quantity: _itemCount,
+                    sellerId: widget.sellerId,
+                    brandId: widget.brandId
                 );
               } else {
                   setState(() {
@@ -112,7 +119,9 @@ class _countState extends State<count> {
                     productId: widget.itemId,
                     productinfo:widget.iteminfo,
                     productprice: int.parse(widget.itemprice),
-                    quantity: _itemCount);
+                    quantity: _itemCount,
+                    sellerId: widget.sellerId,
+                    brandId: widget.brandId);
               }
             },
             icon: const Icon(
@@ -132,7 +141,11 @@ class _countState extends State<count> {
                 productinfo:widget.iteminfo,
                 productId: widget.itemId,
                 productprice: int.parse(widget.itemprice),
-                quantity: _itemCount);
+                quantity: _itemCount,
+                sellerId: widget.sellerId,
+                brandId: widget.brandId
+
+            );
           },
           child: const Center(
               child: Text(

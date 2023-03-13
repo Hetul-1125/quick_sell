@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_sell/order/order_screen.dart';
 
 
 import 'package:quick_sell/screen/login_screen.dart';
@@ -19,7 +20,7 @@ DocumentSnapshot? userdata;
 
     return Drawer(
       width: 250,
-      backgroundColor:Colors.lightBlue ,
+      backgroundColor:Colors.cyan ,
       child: ListView(
         children: [
 
@@ -59,7 +60,9 @@ DocumentSnapshot? userdata;
           ListTile(
             leading: const Icon(Icons.reorder),
             title: const Text("My order"),
-            onTap: (){},
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>OrderScreen()));
+            },
           ),const Divider(height:2 ,color: Colors.grey,),
           ListTile(
             leading: const Icon(Icons.picture_in_picture_alt_rounded),

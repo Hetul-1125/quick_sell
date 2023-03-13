@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_sell/screen/add_delivery_addess/add_delivery_address_screen.dart';
 import 'package:quick_sell/screen/home_screen.dart';
-import 'package:quick_sell/utils/count.dart';
 
 import '../provider/review_cart_provider.dart';
 import '../utils/imageUtils.dart';
 
 class reviwCartScreen extends StatefulWidget {
-  const reviwCartScreen({Key? key}) : super(key: key);
+  final String sellerId;
+  final String brandId;
+  const reviwCartScreen({Key? key,required this.sellerId,required this.brandId}) : super(key: key);
 
   @override
   State<reviwCartScreen> createState() => _reviwCartScreenState();
@@ -17,17 +19,10 @@ class reviwCartScreen extends StatefulWidget {
 
 class _reviwCartScreenState extends State<reviwCartScreen> {
   ReviewcartProvider?_reviewcartProvider;
- // List<int>total=[];
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // _reviewcartProvider!.getTotal();
-    // _reviewcartProvider!.getcartTotal();
-  }
+
   @override
   Widget build(BuildContext context) {
-    _reviewcartProvider=Provider.of(context);
+    _reviewcartProvider=Provider.of(context,listen: false);
     // _reviewcartProvider!.getTotal();
     return Scaffold(
       appBar: AppBar(
@@ -44,16 +39,7 @@ class _reviwCartScreenState extends State<reviwCartScreen> {
             final snap = snapshot.data!.docs as dynamic;
             return ListView.builder(
               itemBuilder: (context, index) {
-                // setState(() {
 
-                // total.add(snap[index]['productprice']*snap[index]['productquantity']);
-                //   var total =total+;
-                // });
-
-
-                // setState(() {
-                //   total=;
-                // });
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
@@ -66,12 +52,7 @@ class _reviwCartScreenState extends State<reviwCartScreen> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // Text('${
-                            //
-                            //         *
-                            //
-                            //                 snap[index]['productquantity']
-                            //   }'),
+
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
@@ -225,7 +206,9 @@ class _reviwCartScreenState extends State<reviwCartScreen> {
                  ],
                ),
              )),
-              TextButton(onPressed: (){}, child:Container(
+              TextButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>addDeliveryAddress(total:_reviewcartProvider!.getcartTotal().toString(),sellerId: widget.sellerId,brandId: widget.brandId,)));
+              }, child:Container(
                 height: MediaQuery.of(context).size.height*.039,
                 width: MediaQuery.of(context).size.width*.3,
                 decoration: BoxDecoration(

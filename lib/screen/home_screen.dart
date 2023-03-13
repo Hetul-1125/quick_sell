@@ -18,12 +18,11 @@ class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
+      backgroundColor: Colors.cyan,
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: linear),
-        ),
+
         title: const Text("QuickSell"),
+        backgroundColor: Colors.cyan,
       ),
       drawer: const customdrawer(),
       body: Column(

@@ -55,6 +55,7 @@ class _brandScreenState extends State<brandScreen> {
                     .collection('sellers')
                     .doc(widget.sellerId)
                     .collection('brand')
+                .orderBy('publiseddate',descending: true)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {

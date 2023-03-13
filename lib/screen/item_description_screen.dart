@@ -15,6 +15,8 @@ class itemdescription extends StatefulWidget {
   final String itemprice;
   final String itemId;
   final String iteminfo;
+  final String sellerId;
+  final String brandId;
 
   const itemdescription(
       {Key? key,
@@ -23,7 +25,9 @@ class itemdescription extends StatefulWidget {
       required this.itemname,
       required this.itemurl,
       required this.itemId,
-      required this.iteminfo})
+      required this.iteminfo,
+      required this.sellerId,
+      required this.brandId})
       : super(key: key);
 
   @override
@@ -41,6 +45,7 @@ class _itemdescriptionState extends State<itemdescription> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
+        elevation: 0,
         actions: [
           Stack(children: [
             Padding(
@@ -48,33 +53,14 @@ class _itemdescriptionState extends State<itemdescription> {
               child: IconButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => reviwCartScreen()));
+                      builder: (context) => reviwCartScreen(brandId: widget.brandId,sellerId: widget.sellerId,)));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.shopping_cart,
                   color: Colors.blueAccent,
                 ),
               ),
             ),
-
-
-            //Item curretnt count show above the cart
-
-            // _itemCount != 0
-            //     ? Positioned(
-            //         top: 8,
-            //         right: -8,
-            //         left: 8,
-            //         child: CircleAvatar(
-            //           radius: 7,
-            //           backgroundColor: Colors.green,
-            //           child: Center(
-            //               child: Text(
-            //             _itemCount.toString(),
-            //             style: TextStyle(color: Colors.white, fontSize: 11),
-            //           )),
-            //         ))
-            //     : Container(),
           ])
         ],
       ),
@@ -99,9 +85,11 @@ class _itemdescriptionState extends State<itemdescription> {
           Expanded(
               child: VxArc(
             height: 25,
+
             arcType: VxArcType.CONVEY,
             edge: VxEdge.TOP,
             child: Container(
+              width: double.infinity,
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 28),
@@ -134,7 +122,7 @@ class _itemdescriptionState extends State<itemdescription> {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8,
                 ),
-                child:count(itemprice:widget.itemprice ,itemId:widget.itemId ,iteminfo:widget.iteminfo ,itemname:widget.itemname ,itemurl:widget.itemurl ,),
+                child:count(itemprice:widget.itemprice ,itemId:widget.itemId ,iteminfo:widget.iteminfo ,itemname:widget.itemname ,itemurl:widget.itemurl ,sellerId: widget.sellerId,brandId: widget.brandId,),
               )
             ],
           ),

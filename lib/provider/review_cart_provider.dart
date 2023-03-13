@@ -13,6 +13,8 @@ class ReviewcartProvider extends ChangeNotifier {
       required int productprice,
         required String productinfo,
       required int quantity,
+        required String sellerId,
+        required String brandId,
       bool? isAdd = true}) async {
     await _firestore
         .collection('user')
@@ -27,6 +29,8 @@ class ReviewcartProvider extends ChangeNotifier {
       "productinfo":productinfo,
       "productquantity": quantity,
       "isAdd": isAdd,
+      "sellerId":sellerId,
+      "brandId":brandId,
     });
   }
 
@@ -44,6 +48,8 @@ class ReviewcartProvider extends ChangeNotifier {
         required int productprice,
         required String productinfo,
         required int quantity,
+        required String sellerId,
+        required String brandId,
         bool? isAdd = true}) async {
     print('quantity');
     print(quantity);
@@ -58,6 +64,8 @@ class ReviewcartProvider extends ChangeNotifier {
       "productid": productId,
       "productquantity": quantity,
       "productinfo":productinfo,
+      "sellerId":sellerId,
+      "brandId":brandId,
       "isAdd": isAdd,
 
     });
@@ -105,6 +113,12 @@ clearReviewCart()async{
       .collection('user')
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection('reviewcartdata').get();
+  value.docs.forEach((element) async{
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('reviewcartdata').doc(element.get('productid')).delete();
+  });
 
   notifyListeners();
 }
@@ -117,10 +131,6 @@ clearReviewCart()async{
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('reviewcartdata').get();
     value.docs.forEach((element) {
-      // int a=element.get('productprice');
-      //
-      // print('price'+element.get('productprice').toString());
-      // print('quantity'+element.get('productquantity').toString());
 
       temp+=int.parse((element.get('productprice')*element.get('productquantity')).toString());
     });
@@ -130,6 +140,35 @@ clearReviewCart()async{
   int get  gettotal{
     return total!;
   }
+  
+  //get reviewcartitemId
+  List cartitem=[];
+  List productquantity=[];
+  getreviewCartitemId()async{
+    List newitem=[];
+    List newquant=[];
+    QuerySnapshot value=await FirebaseFirestore.instance
+        .collection('user')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('reviewcartdata').get();
+    value.docs.forEach((element) {
+      newitem.add(element.get('productid'));
+      newquant.add(element.get('productquantity'));
+     
+    }
+
+
+    );
+    cartitem=newitem;
+    productquantity=newquant;
+    notifyListeners();
+
+  }
+  List get getcartitem{
+    return cartitem;
+  }
+
+  
 
 
 
